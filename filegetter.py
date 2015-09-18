@@ -1,4 +1,3 @@
-from cachecontrol import CacheControl
 from ftplib import FTP
 from urllib.parse import urlparse
 import argparse
@@ -12,7 +11,10 @@ import sys
 LFC_WGET_LIST = 'http://www.linuxfromscratch.org/lfs/view/development/wget-list'
 #LFC_WGET_LIST = 'http://nuc/wget-list'
 
-storagedir = os.path.join('d:', os.sep, 'lfsget')
+if sys.platform == 'win32':
+    storagedir = os.path.join('d:', os.sep, 'lfsget')
+else:
+    storagedir = os.path.join('.', os.sep, 'lfsget')
 
 
 def clean_storage_dir(directory):
